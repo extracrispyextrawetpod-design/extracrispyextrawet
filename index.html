@@ -357,10 +357,12 @@
     <div class="section-tag" style="text-align:center;">DON'T MISS THE DROP</div>
     <h2>Be first in line, aunties.</h2>
     <p>Get early access to merch, new episode alerts, and whatever else we're cooking &mdash; straight to your inbox.</p>
-    <form class="signup" id="waitlistForm">
-      <input type="email" id="emailInput" placeholder="your@email.com" required aria-label="Email address">
+    <form class="signup" id="waitlistForm" action="https://manage.kmail-lists.com/ajax/subscriptions/subscribe" method="POST" target="hidden_iframe">
+      <input type="hidden" name="g" value="SB26J2">
+      <input type="email" name="email" id="emailInput" placeholder="your@email.com" required aria-label="Email address">
       <button type="submit" class="btn btn-solid">Join the Cookout</button>
     </form>
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
     <div class="success-msg" id="successMsg">You're in! Watch your inbox &mdash; the aunties will be in touch. 🔥</div>
     <p class="form-note">No spam. Just crispy, wet updates.</p>
   </div>
@@ -382,10 +384,8 @@
   const form = document.getElementById('waitlistForm');
   const successMsg = document.getElementById('successMsg');
   form.addEventListener('submit', function(e){
-    e.preventDefault();
-    // TODO: Replace this with a real email-service integration
-    // (Mailchimp, Klaviyo, ConvertKit, Flodesk form action, etc.)
-    // Currently this just confirms the submission visually.
+    // Form now actually submits to Klaviyo (list SB26J2) via the hidden iframe.
+    // This just shows the confirmation message right away.
     successMsg.style.display = 'block';
     form.reset();
   });
