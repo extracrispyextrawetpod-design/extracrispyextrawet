@@ -233,10 +233,8 @@
     .btn{transition:none;}
   }
 </style>
-<script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/V7LxxX/klaviyo.js?company_id=V7LxxX'></script>
-<script type="text/javascript">
-//Initialize Klaviyo object on page load
-!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();
+<script>
+  fetch("https://assets.mailerlite.com/jsonp/2491378/forms/192180217576424613/takel");
 </script>
 </head>
 <body>
@@ -362,7 +360,14 @@
     <div class="section-tag" style="text-align:center;">DON'T MISS THE DROP</div>
     <h2>Be first in line, aunties.</h2>
     <p>Get early access to merch, new episode alerts, and whatever else we're cooking &mdash; straight to your inbox.</p>
-    <div class="klaviyo-form-XZZcwZ"></div>
+    <form class="signup" id="waitlistForm" action="https://assets.mailerlite.com/jsonp/2491378/forms/192180217576424613/subscribe" method="post" target="hidden_iframe">
+      <input type="hidden" name="ml-submit" value="1">
+      <input type="hidden" name="anticsrf" value="true">
+      <input type="email" name="fields[email]" id="emailInput" placeholder="your@email.com" required aria-label="Email address">
+      <button type="submit" class="btn btn-solid">Join the Cookout</button>
+    </form>
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
+    <div class="success-msg" id="successMsg">You're in! Watch your inbox &mdash; the aunties will be in touch. 🔥</div>
     <p class="form-note">No spam. Just crispy, wet updates.</p>
   </div>
 </section>
@@ -379,5 +384,14 @@
   <div class="footer-bottom wrap">&copy; 2026 Extra Crispy Extra Wet. Atlanta, GA. Made by aunties, for aunties.</div>
 </footer>
 
+<script>
+  const form = document.getElementById('waitlistForm');
+  const successMsg = document.getElementById('successMsg');
+  form.addEventListener('submit', function(e){
+    // Real submission happens quietly to MailerLite via the hidden iframe.
+    successMsg.style.display = 'block';
+    form.reset();
+  });
+</script>
 </body>
 </html>
