@@ -175,6 +175,38 @@
   }
   .waitlist h2{font-size:clamp(30px,5vw,48px);color:var(--crispy);max-width:18ch;margin:0 auto 16px;}
   .waitlist p{max-width:50ch;margin:0 auto 28px;font-size:17px;color:#4a3a30;}
+
+  /* MailerLite widget overrides to match brand */
+  #mlb2-43402524.ml-form-embedContainer{max-width:480px;margin:0 auto;}
+  #mlb2-43402524 .ml-form-embedWrapper{background:transparent!important;}
+  #mlb2-43402524 .ml-form-embedBody{padding:0!important;}
+  #mlb2-43402524 .ml-form-formContent{margin:0 0 14px 0!important;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+  #mlb2-43402524 .ml-form-fieldRow{margin:0!important;flex:1;min-width:220px;}
+  #mlb2-43402524 input[type=email]{
+    border:3px solid var(--charcoal)!important;
+    border-radius:100px!important;
+    padding:16px 20px!important;
+    font-family:'Space Grotesk',sans-serif!important;
+    font-size:15px!important;
+    height:auto!important;
+  }
+  #mlb2-43402524 .ml-form-embedSubmit{margin:0!important;width:auto!important;float:none!important;}
+  #mlb2-43402524 .ml-form-embedSubmit button.primary{
+    background:var(--crispy)!important;
+    border:3px solid var(--crispy)!important;
+    border-radius:100px!important;
+    font-family:'Bungee',cursive!important;
+    font-size:14px!important;
+    padding:16px 28px!important;
+    width:auto!important;
+    white-space:nowrap;
+  }
+  #mlb2-43402524 .ml-form-embedSubmit button.primary:hover{background:var(--crispy-dark)!important;}
+  #mlb2-43402524 .ml-form-successContent h4{font-family:'Bungee',cursive!important;color:var(--crispy)!important;font-size:20px!important;}
+  #mlb2-43402524 .ml-form-successContent p{font-family:'Space Grotesk',sans-serif!important;color:var(--charcoal)!important;}
+  @media (max-width:480px){
+    #mlb2-43402524 .ml-form-formContent{flex-direction:column;}
+  }
   form.signup{
     display:flex;gap:12px;max-width:480px;margin:0 auto;flex-wrap:wrap;justify-content:center;
   }
@@ -360,17 +392,50 @@
     <div class="section-tag" style="text-align:center;">DON'T MISS THE DROP</div>
     <h2>Be first in line, aunties.</h2>
     <p>Get early access to merch, new episode alerts, and whatever else we're cooking &mdash; straight to your inbox.</p>
-    <form class="signup" id="waitlistForm" action="https://assets.mailerlite.com/jsonp/2491378/forms/192180217576424613/subscribe" method="post" target="hidden_iframe">
-      <input type="hidden" name="ml-submit" value="1">
-      <input type="hidden" name="anticsrf" value="true">
-      <input type="email" name="fields[email]" id="emailInput" placeholder="your@email.com" required aria-label="Email address">
-      <button type="submit" class="btn btn-solid">Join the Cookout</button>
-    </form>
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
-    <div class="success-msg" id="successMsg">You're in! Watch your inbox &mdash; the aunties will be in touch. 🔥</div>
+    <div id="mlb2-43402524" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-43402524">
+      <div class="ml-form-align-center">
+        <div class="ml-form-embedWrapper embedForm">
+          <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+            <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2491378/forms/192180217576424613/subscribe" data-code="" method="post" target="_blank">
+              <div class="ml-form-formContent">
+                <div class="ml-form-fieldRow ml-last-item">
+                  <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                    <input aria-label="email" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="your@email.com" autocomplete="email">
+                  </div>
+                </div>
+              </div>
+              <input type="hidden" name="ml-submit" value="1">
+              <div class="ml-form-embedSubmit">
+                <button type="submit" class="primary">Join the Cookout</button>
+                <button disabled="disabled" style="display: none;" type="button" class="loading">
+                  <div class="ml-form-embedSubmitLoad"></div>
+                  <span class="sr-only">Loading...</span>
+                </button>
+              </div>
+              <input type="hidden" name="anticsrf" value="true">
+            </form>
+          </div>
+          <div class="ml-form-successBody row-success" style="display: none">
+            <div class="ml-form-successContent">
+              <h4>You're in!</h4>
+              <p>Watch your inbox &mdash; the aunties will be in touch. 🔥</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <p class="form-note">No spam. Just crispy, wet updates.</p>
   </div>
 </section>
+
+<script>
+  function ml_webform_success_43402524() {
+    var $ = ml_jQuery || jQuery;
+    $('.ml-subscribe-form-43402524 .row-success').show();
+    $('.ml-subscribe-form-43402524 .row-form').hide();
+  }
+</script>
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
 
 <footer>
   <div class="wrap">
@@ -384,14 +449,5 @@
   <div class="footer-bottom wrap">&copy; 2026 Extra Crispy Extra Wet. Atlanta, GA. Made by aunties, for aunties.</div>
 </footer>
 
-<script>
-  const form = document.getElementById('waitlistForm');
-  const successMsg = document.getElementById('successMsg');
-  form.addEventListener('submit', function(e){
-    // Real submission happens quietly to MailerLite via the hidden iframe.
-    successMsg.style.display = 'block';
-    form.reset();
-  });
-</script>
 </body>
 </html>
